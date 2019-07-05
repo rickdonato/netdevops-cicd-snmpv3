@@ -1,0 +1,7 @@
+---
+snmp_users:
+  - user: snmp-user
+    auth: sha
+    encrypt: yes
+    privacy: PRIV-PASSWORD
+    pwd: AUTH-PASSWORD
