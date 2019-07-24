@@ -4,7 +4,6 @@
   gather_facts: false
   connection: network_cli
   tasks:
-  
     - name: Configure SNMP User
       nxos_snmp_user:
          user: "{{ item.user }}"
@@ -13,3 +12,5 @@
          privacy: "{{ item.privacy }}"
          pwd: "{{ item.pwd }}"
       with_items: "{{ snmp_users }}"
+
+

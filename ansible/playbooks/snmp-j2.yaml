@@ -1,0 +1,19 @@
+---
+- name: Configure SNMPv3
+  hosts: all
+  gather_facts: false
+  connection: network_cli
+  tasks:
+    - name: Configure SNMP User via j2 template
+      nxos_config:
+         src: "templates\snmpv3.j2"
+         save_when: changed
+      notify: config_changed
+      register: cli_result
+  
+  handlers:
+    - name: Display changes 
+      listen: config_changed
+      debug: 
+        msg: "{{ cli_result.commands }}"
+

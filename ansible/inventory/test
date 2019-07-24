@@ -6,9 +6,9 @@ ansible_python_interpreter=/usr/bin/python3
 ansible_network_os=nxos
 
 [spine]
-spine1 ansible_host=172.29.132.51
-spine2 ansible_host=172.29.132.52
+spine1 ansible_host=172.29.132.11
+spine2 ansible_host=172.29.132.12
 
 [leaf]
-leaf1 ansible_host=172.29.132.237
-leaf2 ansible_host=172.29.132.238
+leaf1 ansible_host=172.29.132.13
+leaf2 ansible_host=172.29.132.14
