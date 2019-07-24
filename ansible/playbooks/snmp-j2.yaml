@@ -6,7 +6,7 @@
   tasks:
     - name: Configure SNMP User via j2 template
       nxos_config:
-         src: "templates\snmpv3.j2"
+         src: "../templates/snmp.j2"
          save_when: changed
       notify: config_changed
       register: cli_result

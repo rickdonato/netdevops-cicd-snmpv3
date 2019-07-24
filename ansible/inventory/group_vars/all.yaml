@@ -3,5 +3,10 @@ snmp_users:
   - user: snmp-user3
     auth: sha
     encrypt: yes
-    privacy: PRIV-PASSWORD
-    pwd: AUTH-PASSWORD
+    privacy: PRIV-PASSWORD3
+    pwd: AUTH-PASSWORD3
+  - user: snmp-user4
+    auth: sha
+    encrypt: yes
+    privacy: PRIV-PASSWORD4
+    pwd: AUTH-PASSWORD4

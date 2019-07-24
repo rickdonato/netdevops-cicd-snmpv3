@@ -1,0 +1,3 @@
+{% for snmp_user in snmp_users %}
+snmp-server user {{ snmp_user.user }} network-operator auth sha {{ snmp_user.pwd }} priv aes-128 {{ snmp_user.privacy }}
+{% endfor %}
