@@ -1,11 +1,11 @@
 ---
-- name: Configure SNMPv3
+- name: Configure Feature
   hosts: all
   connection: network_cli
   tasks:
-    - name: Configure SNMP User via j2 template
+    - name: Configure Feature User via j2 template
       nxos_config:
-         src: "../templates/snmp.j2"
+         src: "../templates/feature.j2"
          save_when: changed
       notify: config_changed
       register: cli_result

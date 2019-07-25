@@ -12,5 +12,16 @@
          privacy: "{{ item.privacy }}"
          pwd: "{{ item.pwd }}"
       with_items: "{{ snmp_users }}"
+      notify: config_changed
+      register: cli_result
 
+  handlers:
+    - name: "HANDLER 1: Display commands to be sent to device"
+      listen: config_changed
+      debug:
+        msg: "{{ cli_result.commands }}"
 
+    - name: "HANDLER 2: Save configuration"
+      listen: config_changed
+      ios_config:
+        save_when: always
