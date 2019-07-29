@@ -4,10 +4,10 @@ vlans:
     name: web_servers
 
 interfaces_l2:
-  - name: eth1/1 
+  - name: eth1/1
     mode: trunk
     trunk_allowed_vlans: 1-4094
-    state: present 
+    state: present
   - name: eth1/4
     mode: trunk
     trunk_allowed_vlans: 1-4094
