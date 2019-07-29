@@ -1,0 +1,18 @@
+---
+- name: "PLAY 1: TEST SNMP"
+  hosts: all
+  connection: network_cli
+  tasks:
+    - name: "TEST FACTS"
+      snmp_facts:
+        host: "{{ ansible_host }}" 
+        version: v3
+        level: authPriv
+        integrity: sha
+        privacy: aes
+        username: "{{ item.user }}"
+        authkey: "{{ item.pwd }}"
+        privkey: "{{ item.privacy }}"
+      with_items: "{{ snmp_users }}"
+      delegate_to: localhost
+
