@@ -9,7 +9,7 @@
          save_when: changed
       notify: config_changed
       register: cli_result
-12
+  
   handlers:
     - name: "HANDLER 1: Display changes"
       listen: config_changed

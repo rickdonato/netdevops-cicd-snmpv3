@@ -1,7 +1,7 @@
 ---
 - name: "PLAY 1: TEST SNMP"
   hosts: all
-  connection: network_cli
+  connection: local
   tasks:
     - name: "TEST FACTS"
       snmp_facts:
@@ -15,4 +15,11 @@
         privkey: "{{ item.privacy }}"
       with_items: "{{ snmp_users }}"
       delegate_to: localhost
+      notify: snmp_facts_collected
 
+  handlers: 
+    - name: "darts"
+      listen: snmp_facts_collected
+      fail: 
+        msg: parse err
+      when: '"Xisco NX-OS" not in "{{ ansible_architecture }}"' 
