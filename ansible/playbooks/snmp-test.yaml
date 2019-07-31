@@ -3,9 +3,9 @@
   hosts: all
   connection: local
   tasks:
-    - name: "TEST FACTS"
+    - name: "TASK 1: GATHER FACTS VIA SNMP"
       snmp_facts:
-        host: "{{ ansible_host }}" 
+        host: "{{ ansible_host }}"
         version: v3
         level: authPriv
         integrity: sha
@@ -15,11 +15,8 @@
         privkey: "{{ item.privacy }}"
       with_items: "{{ snmp_users }}"
       delegate_to: localhost
-      notify: snmp_facts_collected
 
-  handlers: 
-    - name: "darts"
-      listen: snmp_facts_collected
-      fail: 
-        msg: parse err
-      when: '"Xisco NX-OS" not in "{{ ansible_architecture }}"' 
+    - name: "TASK 2: VALIDATE SNMP RESPONSE"
+      fail:
+        msg: "Cisco NX-OS not in ansible_sysdescr"
+      when: '"Cisco NX-OS" not in ansible_sysdescr'

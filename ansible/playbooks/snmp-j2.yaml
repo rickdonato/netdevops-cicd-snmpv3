@@ -1,17 +1,17 @@
 ---
-- name: Configure SNMPv3
+- name: "PLAY 1: CONFIGURE SNMPv3"
   hosts: all
   connection: network_cli
   tasks:
-    - name: Configure SNMP User via j2 template
+    - name: "TASK 1: CONFIGURE SNMP VIA J2 TEMPLATE"
       nxos_config:
          src: "../templates/snmp.j2"
          save_when: changed
       notify: config_changed
       register: cli_result
-  
+
   handlers:
-    - name: "HANDLER 1: Display changes"
+    - name: "HANDLER 1: DISPLAY GENERATED CONFIGURATION"
       listen: config_changed
       debug:
         msg: "{{ cli_result.commands }}"

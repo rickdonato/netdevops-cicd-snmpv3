@@ -1,10 +1,10 @@
 ---
-- name: Configure SNMPv3
+- name: "PLAY 1: CONFIGURE SNMP"
   hosts: all
   gather_facts: false
   connection: network_cli
   tasks:
-    - name: Configure SNMP User
+    - name: "TASK 1: CONFIGURE SNMP USER"
       nxos_snmp_user:
          user: "{{ item.user }}"
          authentication: "{{ item.auth }}"
@@ -16,12 +16,12 @@
       register: cli_result
 
   handlers:
-    - name: "HANDLER 1: Display commands to be sent to device"
+    - name: "HANDLER 1: DISPLAY COMMANDS TO BE SENT TO DEVICE"
       listen: config_changed
       debug:
         msg: "{{ cli_result.commands }}"
 
-    - name: "HANDLER 2: Save configuration"
+    - name: "HANDLER 2: SAVE CONFIGURATION"
       listen: config_changed
       ios_config:
         save_when: always
