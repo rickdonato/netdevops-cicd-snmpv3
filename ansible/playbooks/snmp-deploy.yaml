@@ -19,7 +19,7 @@
     - name: "HANDLER 1: DISPLAY COMMANDS TO BE SENT TO DEVICE"
       listen: config_changed
       debug:
-        msg: "{{ cli_result.commands }}"
+        msg: "{{ cli_result.results[0].commands }}"
 
     - name: "HANDLER 2: SAVE CONFIGURATION"
       listen: config_changed
