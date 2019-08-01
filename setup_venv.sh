@@ -34,4 +34,4 @@ if [ "$ACTION" == "create" ] ; then
     create_venv
 elif [ "$ACTION" == "delete" ] ; then
     delete_venv
-}
+fi
