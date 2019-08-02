@@ -16,22 +16,22 @@ venv:
 .PHONY: install
 install:
 	virtualenv venv
-        source venv/bin/activate
-        pip install -r ./requirements.txt
-        
+	source venv/bin/activate
+	pip install -r ./requirements.txt
+	
 .PHONY: fmt
 fmt:
-        sudo find ./ \( -name *.yaml -o -name *.yml \) -exec sed -i  's/\ *$//g' {} \;
+	sudo find ./ \( -name *.yaml -o -name *.yml \) -exec sed -i  's/\ *$//g' {} \;
 
 .PHONY: lint
 lint:
-        virtualenv venv
-        find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
- 
+	virtualenv venv
+	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
+	
 .PHONY: build
 build:
 	. ./venv/bin/activate
-        virl up -e test-network --provision
+	virl up -e test-network --provision
 
 .PHONY: deploy
 deploy:
@@ -48,3 +48,5 @@ clean:
 	virl down test-network
 	. ./venv/bin/deactivate
 	rm -rf ./venv
+
+# :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
