@@ -1,4 +1,6 @@
 ---
+ansible_python_interpreter: ./venv/bin/python
+
 snmp_users:
   - user: snmp-user32
     auth: sha
