@@ -3,6 +3,7 @@
 export VIRL_HOST=172.29.236.133
 export VIRL_USERNAME=guest
 export VIRL_PASSWORD=guest
+export ANSIBLE_HOST_KEY_CHECKING=False
 
 .PHONY: all
 all:    clean venv deps fmt lint build deploy test clean
@@ -41,7 +42,6 @@ deploy:
 .PHONY: test
 test:
 	. ./venv/bin/activate
-	cd ansible
 	ansible-playbook -i ansible/inventory/hosts_test ansible/playbooks/snmp-test.yaml
 
 .PHONY: clean
