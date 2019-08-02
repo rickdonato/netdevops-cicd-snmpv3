@@ -5,7 +5,7 @@ export VIRL_USERNAME=guest
 export VIRL_PASSWORD=guest
 
 .PHONY: all
-all:    venv install fmt lint build deploy test clean
+all:    clean venv deps fmt lint build deploy test clean
 
 .PHONY: venv
 venv:
