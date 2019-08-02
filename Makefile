@@ -1,33 +1,33 @@
 .DEFAULT_GOAL := all
 
-VIRL_HOST=172.29.236.133
-VIRL_USERNAME=guest
-VIRL_PASSWORD=guest
+export VIRL_HOST=172.29.236.133
+export VIRL_USERNAME=guest
+export VIRL_PASSWORD=guest
 
 .PHONY: all
-all:	venv install fmt lint build deploy test clean
+all:    venv install fmt lint build deploy test clean
 
 .PHONY: venv
 venv:
 	apt-get update -y
 	apt-get install python-pip -y
 	pip install virtualenv
-
-.PHONY: install
-install:
 	virtualenv venv
-	source venv/bin/activate
+
+.PHONY: deps
+deps:
+	. ./venv/bin/activate
 	pip install -r ./requirements.txt
-	
+
 .PHONY: fmt
 fmt:
-	sudo find ./ \( -name *.yaml -o -name *.yml \) -exec sed -i  's/\ *$//g' {} \;
+	sudo find ./ \( -name *.yaml -o -name *.yml \) | xargs sed -i  "s/\s *$$//g"
 
 .PHONY: lint
 lint:
-	virtualenv venv
+	. ./venv/bin/activate
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
-	
+
 .PHONY: build
 build:
 	. ./venv/bin/activate
@@ -36,17 +36,18 @@ build:
 .PHONY: deploy
 deploy:
 	. ./venv/bin/activate
-	./ansible/ansible-playbook -i inventory/hosts_test playbooks/snmp-deploy.yaml
+	ansible-playbook -i ansible/inventory/hosts_test ansible/playbooks/snmp-deploy.yaml
 
 .PHONY: test
 test:
 	. ./venv/bin/activate
-	./ansible/ansible-playbook -i inventory/hosts_test playbooks/snmp-test.yaml	
+	cd ansible
+	ansible-playbook -i ansible/inventory/hosts_test ansible/playbooks/snmp-test.yaml
 
 .PHONY: clean
 clean:
+	. ./venv/bin/activate
 	virl down test-network
-	. ./venv/bin/deactivate
 	rm -rf ./venv
 
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
