@@ -8,7 +8,7 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 
 .PHONY: all
-all:    clean venv deps fmt lint build deploy test
+all:    venv deps fmt lint build deploy test clean
 
 .PHONY: venv
 venv:
@@ -50,7 +50,7 @@ test:
 clean:
 	. ./venv/bin/activate
 	virl down test-network
-        rm .virl/test-network/id
-	rm -rf ./venv
+	rm -vf .virl/test-network/id
+	rm -vrf ./venv
 
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
