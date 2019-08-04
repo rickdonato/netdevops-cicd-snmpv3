@@ -4,9 +4,11 @@ export VIRL_HOST=172.29.236.133
 export VIRL_USERNAME=guest
 export VIRL_PASSWORD=guest
 export ANSIBLE_HOST_KEY_CHECKING=False
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
 
 .PHONY: all
-all:    clean venv deps fmt lint build deploy test clean
+all:    clean venv deps fmt lint build deploy test
 
 .PHONY: venv
 venv:
@@ -48,6 +50,7 @@ test:
 clean:
 	. ./venv/bin/activate
 	virl down test-network
+        rm .virl/test-network/id
 	rm -rf ./venv
 
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
