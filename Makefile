@@ -10,15 +10,15 @@ export LANG=C.UTF-8
 .PHONY: all
 all:    venv deps fmt lint build deploy test clean
 
-.PHONY: venv
-venv:
+.PHONY: apt
+apt:
 	apt-get update -y
 	apt-get install python-pip -y
+
+.PHONY: venv
+venv:
 	pip install virtualenv
 	virtualenv venv
-
-.PHONY: deps
-deps:
 	. ./venv/bin/activate
 	pip install -r ./requirements.txt
 
