@@ -6,7 +6,6 @@ export VIRL_PASSWORD=guest
 export ANSIBLE_HOST_KEY_CHECKING=False
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
-export PATH=$$PATH:/var/jenkins_home/.local/lib/python2.7/site-packages
 
 .PHONY: all
 all:    apt venv fmt lint build deploy test clean
@@ -18,6 +17,7 @@ apt:
 
 .PHONY: venv
 venv:
+	PATH=$$PATH:/var/jenkins_home/.local/lib/python2.7/site-packages
 	pip install virtualenv
 	virtualenv venv
 	. ./venv/bin/activate
