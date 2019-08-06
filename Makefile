@@ -18,7 +18,8 @@ apt:
 .PHONY: venv
 venv:
 	pip install virtualenv
-	virtualenv venv
+	PATH=$$PATH:/var/jenkins_home/.local/lib/python2.7/site-packages
+        virtualenv venv
 	. ./venv/bin/activate
 	pip install -r ./requirements.txt
 

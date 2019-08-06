@@ -2,6 +2,8 @@ WIP... and is in very early draft stages.
 
 ## Installation Steps
 * install jenkins container
+* apt-get install sudo make vim -y
+
 * user mod - https://sgoyal.net/2016/11/18/run-a-shell-from-jenkins-using-sudo-ubuntu/
 
 ## CI
