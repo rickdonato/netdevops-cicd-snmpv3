@@ -30,7 +30,7 @@ fmt:
 .PHONY: lint
 lint:
 	. ./venv/bin/activate
-        venv/bin/pip freeze
+	venv/bin/pip freeze
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
 .PHONY: build
