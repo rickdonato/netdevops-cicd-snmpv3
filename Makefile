@@ -8,7 +8,7 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 
 .PHONY: all
-all:    venv deps fmt lint build deploy test clean
+all:    apt venv fmt lint build deploy test clean
 
 .PHONY: apt
 apt:
