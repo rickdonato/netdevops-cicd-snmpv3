@@ -12,8 +12,8 @@ all:    venv deps fmt lint build deploy test clean
 
 .PHONY: apt
 apt:
-	apt-get update -y
-	apt-get install python-pip -y
+	sudo apt-get update -y
+	sudo apt-get install python-pip -y
 
 .PHONY: venv
 venv:
