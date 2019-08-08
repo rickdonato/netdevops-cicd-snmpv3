@@ -6,12 +6,14 @@ export VIRL_PASSWORD=guest
 export ANSIBLE_HOST_KEY_CHECKING=False
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
+#export PATH=$$PATH:/var/jenkins_home/.local/lib/python2.7/site-packages:./venv/
 
 .PHONY: all
 all:    apt venv fmt lint build deploy test clean
 
 .PHONY: apt
 apt:
+	echo $$PATH
 	sudo apt-get update -y
 	sudo apt-get install python-pip -y
 
