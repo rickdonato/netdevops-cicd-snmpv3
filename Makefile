@@ -32,7 +32,10 @@ fmt:
 lint:
 	. ./venv/bin/activate
 	pip freeze
+	@echo "==="
+	venv/bin/pip freeze
 	echo $$PATH
+	which pip
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
 .PHONY: build
