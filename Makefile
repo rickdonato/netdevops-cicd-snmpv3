@@ -18,7 +18,6 @@ apt:
 
 .PHONY: venv
 venv:
-	#PATH=$$PATH:/var/jenkins_home/.local/lib/python2.7/site-packages
 	pip install virtualenv
 	virtualenv venv
 	. ./venv/bin/activate
@@ -36,6 +35,7 @@ lint:
 	venv/bin/pip freeze
 	echo $$PATH
 	which pip
+        which ansible-lint
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
 .PHONY: build
