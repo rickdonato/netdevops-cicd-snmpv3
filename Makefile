@@ -8,18 +8,17 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 #export PATH=$$PATH:/var/jenkins_home/.local/lib/python2.7/site-packages:./venv/
 
-.PHONY: all
-all:    apt venv fmt lint build deploy test clean
+#PHONY: all
+#all:    apt venv fmt lint build deploy test clean
 
 .PHONY: apt
 apt:
-	echo $$PATH
-	sudo apt-get update -y
-	sudo apt-get install python-pip -y
+	apt-get update -y
+	apt-get install python-pip -y
 
 .PHONY: venv
 venv:
-	PATH=$$PATH:/var/jenkins_home/.local/lib/python2.7/site-packages
+	#PATH=$$PATH:/var/jenkins_home/.local/lib/python2.7/site-packages
 	pip install virtualenv
 	virtualenv venv
 	. ./venv/bin/activate
@@ -27,12 +26,11 @@ venv:
 
 .PHONY: fmt
 fmt:
-	sudo find ./ \( -name *.yaml -o -name *.yml \) | xargs sed -i  "s/\s *$$//g"
+	find ./ \( -name *.yaml -o -name *.yml \) | xargs sed -i  "s/\s *$$//g"
 
 .PHONY: lint
 lint:
 	. ./venv/bin/activate
-	venv/bin/pip freeze
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
 .PHONY: build
