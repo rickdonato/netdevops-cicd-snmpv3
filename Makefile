@@ -35,7 +35,7 @@ lint:
 	venv/bin/pip freeze
 	echo $$PATH
 	which pip
-        which ansible-lint
+	which ansible-lint
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
 .PHONY: build
