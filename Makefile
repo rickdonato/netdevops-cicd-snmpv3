@@ -6,10 +6,7 @@ export VIRL_PASSWORD=guest
 export ANSIBLE_HOST_KEY_CHECKING=False
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
-export PATH=$$PATH:/var/jenkins_home/jobs/Integration/workspace/venv/bin:/usr/local/bin:/usr/bin:/bin
-
-#PHONY: all
-#all:    apt venv fmt lint build deploy test clean
+export PATH=$$PATH:./venv/bin:/usr/local/bin:/usr/bin:/bin
 
 .PHONY: apt
 apt:
@@ -23,41 +20,44 @@ venv:
 	. ./venv/bin/activate
 	venv/bin/pip install -r ./requirements.txt
 
-.PHONY: fmt
+.PHONY: format
 fmt:
 	find ./ \( -name *.yaml -o -name *.yml \) | xargs sed -i  "s/\s *$$//g"
 
 .PHONY: lint
 lint:
 	. ./venv/bin/activate
-	pip freeze
-	@echo "==="
-	venv/bin/pip freeze
-	echo $$PATH
-	which pip
-	which ansible-lint
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
-.PHONY: build
+.PHONY: virl_test_env
 build:
 	. ./venv/bin/activate
 	virl up -e test-network --provision
 
-.PHONY: deploy
+.PHONY: test_deploy
 deploy:
 	. ./venv/bin/activate
-	ansible-playbook -i ansible/inventory/hosts_test ansible/playbooks/snmp-deploy.yaml
+	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-deploy.yaml
 
-.PHONY: test
+.PHONY: test_test
 test:
 	. ./venv/bin/activate
-	ansible-playbook -i ansible/inventory/hosts_test ansible/playbooks/snmp-test.yaml
+	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-test.yaml
+
+.PHONY: prod_deploy
+deploy:
+	. ./venv/bin/activate
+	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-deploy.yaml
+
+.PHONY: prod_test
+test:
+	. ./venv/bin/activate
+	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-test.yaml
 
 .PHONY: clean
 clean:
 	. ./venv/bin/activate
 	virl down test-network
-	#rm -vf .virl/test-network/id
-	rm -vrf ./venv
+	rm -rf ./venv
 
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
