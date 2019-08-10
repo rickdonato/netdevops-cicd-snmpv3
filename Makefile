@@ -21,7 +21,7 @@ venv:
 	venv/bin/pip install -r ./requirements.txt
 
 .PHONY: format
-fmt:
+format:
 	find ./ \( -name *.yaml -o -name *.yml \) | xargs sed -i  "s/\s *$$//g"
 
 .PHONY: lint
@@ -30,27 +30,27 @@ lint:
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
 .PHONY: virl_test_env
-build:
+virl_test_env:
 	. ./venv/bin/activate
 	virl up -e test-network --provision
 
 .PHONY: test_deploy
-deploy:
+test_deploy:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-deploy.yaml
 
 .PHONY: test_test
-test:
+test_test:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-test.yaml
 
 .PHONY: prod_deploy
-deploy:
+prod_deploy:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-deploy.yaml
 
 .PHONY: prod_test
-test:
+prod_test:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-test.yaml
 
