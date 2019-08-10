@@ -57,7 +57,7 @@ test:
 clean:
 	. ./venv/bin/activate
 	virl down test-network
-	rm -vf .virl/test-network/id
+	#rm -vf .virl/test-network/id
 	rm -vrf ./venv
 
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
