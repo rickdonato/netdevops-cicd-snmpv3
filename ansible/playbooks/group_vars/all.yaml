@@ -5,7 +5,7 @@ snmp_users:
     encrypt: yes
     privacy: PRIV-PASSWORD3
     pwd: AUTH-PASSWORD3
-  - user: snmp-user4
+  - user: cyril-ya-old-goat
     auth: sha
     encrypt: yes
     privacy: PRIV-PASSWORD4
