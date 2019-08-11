@@ -1,12 +1,12 @@
 ---
 snmp_users:
-  - user: snmp-user32
+  - user: snmp-user1
     auth: sha
     encrypt: yes
-    privacy: PRIV-PASSWORD3
-    pwd: AUTH-PASSWORD3
-  - user: cyril-ya-old-goat
+    privacy: PRIV-PASSWORD1
+    pwd: AUTH-PASSWORD1
+  - user: snmp-user2
     auth: sha
     encrypt: yes
-    privacy: PRIV-PASSWORD4
-    pwd: AUTH-PASSWORD4
+    privacy: PRIV-PASSWORD2
+    pwd: AUTH-PASSWORD2
