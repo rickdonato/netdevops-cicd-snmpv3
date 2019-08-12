@@ -9,26 +9,32 @@ DRAFT - WIP
 http://oss-world.blogspot.com/2015/08/merge-git-branches-using-jenkins.html
 https://packetflow.slack.com/apps/A0F7VRFKN
 
-## CI
-Performed via Makefile:
-* venv
-* deps
-* fmt
-* lint
-* build
-* deploy
-* test
-* clean
+## Makefile
+```
+ make help
+  apt                       Install pip
+  clean-all                 Stop VIRL test env and remove virtualenv
+  configure-prod-env        Configure prod env
+  configure-test-env        Configure test env
+  format                    Remove end of line spaces from yaml files
+  lint                      Perform linting against ansible yaml files
+  remove-venv               Remove virtualenv
+  start-virl-test-env       Start VIRL test env
+  stop-virl-test-env        Stop VIRL test env
+  test-prod-env             Test prod env
+  test-test-env             Test test env
+  venv                      Install virtualenv, create virtualenv, install requirements
+```
 
-* merge to master
-* perform same steps as above but with master branch
-* perform same steps as above against prod
+## Pipeline 1 - Auto
+Test test branch against VIRL test environment.
+Merge to master
 
-Note: add release and process of git issues.
+## Pipeline 2 - Kicked from Pipeline1
+Test master branch against VIRL test environment.
 
-## CD - Delivery
-
-## CD - Deployment
+## Pipeline 3 - Manual
+Configure prod and test prod.
 
 ## Caveats
 Makefile - sed and $

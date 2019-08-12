@@ -11,68 +11,67 @@ export PATH=$$PATH:./venv/bin:/usr/local/bin:/usr/bin:/bin
 
 .PHONY: help
 help:
-	@grep '^[a-zA-Z]' $(MAKEFILE_LIST) | \
-	sort | \
-	awk -F ':.*?## ' 'NF==2 {printf "\033[36m  %-25s\033[0m %s\n", $$1, $$2}'
-	
-.PHONY: apt
-apt: ## Install pip
+        @awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
+
+
+.PHONY: apt ## Apt-get update and pip install
+apt:
 	apt-get update -y
 	apt-get install python-pip -y
 
-.PHONY: venv
-venv: ## Install virtualenv, create virtualenv, install requirements
+.PHONY: venv ## 123
+venv:
 	pip install virtualenv
 	virtualenv venv
 	. ./venv/bin/activate
 	@venv/bin/pip install -r ./requirements.txt
 
 .PHONY: format
-format: ## Remove end of line spaces from yaml files
+format:
 	find ./ \( -name *.yaml -o -name *.yml \) | xargs sed -i  "s/\s *$$//g"
 
 .PHONY: lint
-lint: ## Perform linting against ansible yaml files
+lint:
 	. ./venv/bin/activate
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
-.PHONY: start-virl-test-env
-start-virl-test-env: ## Start VIRL test env
+.PHONY: virl_test_env
+virl_test_env:
 	. ./venv/bin/activate
 	virl up -e test-network --provision
 
-.PHONY: configure-test-env
-configure-test-env: ## Configure test env
+.PHONY: test_deploy
+test_deploy:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-deploy.yaml
 
-.PHONY: test-test-env
-test-test-env: ## Test test env
+.PHONY: test_test
+test_test:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-test.yaml
 
-.PHONY: configure-prod-env
-configure-prod-env: ## Configure prod env
+.PHONY: prod_deploy
+prod_deploy:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-deploy.yaml
 
-.PHONY: test-prod-env
-test-prod-env: ## Test prod env
+.PHONY: prod_test
+prod_test:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-test.yaml
 
-.PHONY: stop-virl-test-env
-stop-virl-test-env: ## Stop VIRL test env
+.PHONY: clean_virl_test_env
+clean_virl_test_env:
 	. ./venv/bin/activate
 	virl down test-network
 
-.PHONY: remove-venv
-remove-venv: ## Remove virtualenv
+.PHONY: clean_venv
+clean_venv:
 	. ./venv/bin/activate
 	rm -rf ./venv
 
-.PHONY: clean-all
-clean-all: ## Stop VIRL test env and remove virtualenv
-	stop-virl-test-env remove-venv
+.PHONY: clean_all
+clean_all:
+	clean_virl_test_env clean_venv
 	
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
