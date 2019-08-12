@@ -38,7 +38,7 @@ lint: ## Perform linting against ansible yaml files
 .PHONY: start-virl-test-env
 start-virl-test-env: ## Start VIRL test env
 	. ./venv/bin/activate
-	virl up -e test-network --provision
+	virl up -e test-network --provision virl/test.virl
 
 .PHONY: configure-test-env
 configure-test-env: ## Configure test env
