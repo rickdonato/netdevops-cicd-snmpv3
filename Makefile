@@ -14,13 +14,13 @@ help:
 	sort | \
 	awk -F ':.*?## ' 'NF==2 {printf "\033[36m  %-25s\033[0m %s\n", $$1, $$2}'
 	
-.PHONY: apt
-apt: ## Install pip
+.PHONY: install-deps
+install-deps: ## Install pip
 	apt-get update -y
 	apt-get install python-pip -y
 
-.PHONY: venv
-venv: ## Install virtualenv, create virtualenv, install requirements
+.PHONY: add-venv
+add-venv: ## Install virtualenv, create virtualenv, install requirements
 	pip install virtualenv
 	virtualenv venv
 	. ./venv/bin/activate
