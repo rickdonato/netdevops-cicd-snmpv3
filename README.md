@@ -26,7 +26,7 @@ This repo is based upon a simple NetDevOps demo to deploy SNMPv3 to a Spine and 
   test-test-env             Test test env
   venv                      Install virtualenv, create virtualenv, install requirements
 ```
-
+https://pubhub.devnetcloud.com/media/netdevops-live/site/files/s02t05.pdf
 ## Pipeline 1 - Auto
 *Test test branch against VIRL test environment.
 * Merge to master
