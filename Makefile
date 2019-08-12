@@ -18,7 +18,7 @@ venv:
 	pip install virtualenv
 	virtualenv venv
 	. ./venv/bin/activate
-	venv/bin/pip install -r ./requirements.txt
+	@venv/bin/pip install -r ./requirements.txt
 
 .PHONY: format
 format:
@@ -68,5 +68,4 @@ clean_venv:
 clean_all:
 	clean_virl_test_env clean_venv
 	
-#
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
