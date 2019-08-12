@@ -8,7 +8,6 @@ export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
 export PATH=$$PATH:./venv/bin:/usr/local/bin:/usr/bin:/bin
 
-
 .PHONY: help
 help:
 	@grep '^[a-zA-Z]' $(MAKEFILE_LIST) | \
