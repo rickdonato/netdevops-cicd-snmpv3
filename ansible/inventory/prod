@@ -2,13 +2,12 @@
 ansible_user=cisco
 ansible_ssh_pass=cisco
 ansible_connection=network_cli
-ansible_python_interpreter=/usr/bin/python3
 ansible_network_os=nxos
 
 [spine]
-spine1 ansible_host=172.29.132.11
-spine2 ansible_host=172.29.132.12
+spine1 ansible_host=172.29.132.21
+spine2 ansible_host=172.29.132.22
 
 [leaf]
-leaf1 ansible_host=172.29.132.13
-leaf2 ansible_host=172.29.132.14
+leaf1 ansible_host=172.29.132.23
+leaf2 ansible_host=172.29.132.24

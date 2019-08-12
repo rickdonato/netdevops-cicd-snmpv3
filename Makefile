@@ -54,11 +54,19 @@ prod_test:
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-test.yaml
 
-.PHONY: clean
-clean:
+.PHONY: clean_virl_test_env
+clean_virl_test_env:
 	. ./venv/bin/activate
 	virl down test-network
+
+.PHONY: clean_venv
+clean_venv:
+	. ./venv/bin/activate
 	rm -rf ./venv
 
+.PHONY: clean_all
+clean_all:
+	clean_virl_test_env clean_venv
+	
 #
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
