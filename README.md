@@ -11,6 +11,11 @@ This repo is based upon a simple NetDevOps demo to deploy SNMPv3 to a Spine and 
 * http://oss-world.blogspot.com/2015/08/merge-git-branches-using-jenkins.html
 * https://packetflow.slack.com/apps/A0F7VRFKN
 
+## Create Fake Prod
+```
+virl up -e prod -f virl/prod.virl
+```
+
 ## Makefile
 ```
   apt                       Install pip
