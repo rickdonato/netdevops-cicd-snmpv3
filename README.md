@@ -10,6 +10,7 @@ This repo is based upon a simple NetDevOps demo to deploy SNMPv3 to a Spine and 
 * user mod - https://sgoyal.net/2016/11/18/run-a-shell-from-jenkins-using-sudo-ubuntu/
 * http://oss-world.blogspot.com/2015/08/merge-git-branches-using-jenkins.html
 * https://packetflow.slack.com/apps/A0F7VRFKN
+* Build Name and Description Setter
 
 ## Create Fake Prod
 ```
