@@ -24,6 +24,7 @@ add-venv: ## Install virtualenv, create virtualenv, install requirements
 	pip install virtualenv
 	virtualenv venv
 	. ./venv/bin/activate
+	@echo installing requirements.txt ...
 	@venv/bin/pip install -q -r ./requirements.txt
 
 .PHONY: format
@@ -39,6 +40,7 @@ lint: ## Perform linting against ansible yaml files
 start-virl-test-env: ## Start VIRL test env
 	. ./venv/bin/activate
 	virl up -e test-network --provision -f virl/test.virl
+	virl ls | grep test | grep ACTIVE
 
 .PHONY: configure-test-env
 configure-test-env: ## Configure test env
