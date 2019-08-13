@@ -24,7 +24,7 @@ add-venv: ## Install virtualenv, create virtualenv, install requirements
 	pip install virtualenv
 	virtualenv venv
 	. ./venv/bin/activate
-	@venv/bin/pip install -r ./requirements.txt
+	@venv/bin/pip install -q -r ./requirements.txt
 
 .PHONY: format
 format: ## Remove end of line spaces from yaml files
@@ -70,8 +70,6 @@ remove-venv: ## Remove virtualenv
 	. ./venv/bin/activate
 	rm -rf ./venv
 
-.PHONY: clean-all
-clean-all: ## Stop VIRL test env and remove virtualenv
-	stop-virl-test-env remove-venv
+clean-all: stop-virl-test-env remove-venv ## Stop VIRL test env and remove virtualenv 
 	
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
