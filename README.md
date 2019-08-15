@@ -11,6 +11,7 @@ This repo is based upon a simple NetDevOps demo to deploy SNMPv3 to a Spine and 
 * http://oss-world.blogspot.com/2015/08/merge-git-branches-using-jenkins.html
 * https://packetflow.slack.com/apps/A0F7VRFKN
 * Build Name and Description Setter
+* https://stackoverflow.com/questions/18635186/jenkins-passing-updated-revision-to-downstream-jobs/40348900#40348900
 
 ## Create Fake Prod
 ```
