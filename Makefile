@@ -36,34 +36,34 @@ lint: ## Perform linting against ansible yaml files
 	. ./venv/bin/activate
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
-.PHONY: start-virl-test-env
-start-virl-test-env: ## Start VIRL test env
+.PHONY: start-test-network
+start-virl-test-network: ## Start test network via VIRL
 	. ./venv/bin/activate
 	virl up -e test-network --provision -f virl/test.virl
 	virl ls | grep test | grep ACTIVE
 
-.PHONY: configure-test-env
-configure-test-env: ## Configure test env
+.PHONY: configure-test-network
+configure-test-network: ## Configure test network
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-deploy.yaml
 
-.PHONY: test-test-env
-test-test-env: ## Test test env
+.PHONY: run-tests-test-network
+run-tests-test-network: ## Rum tests against test network
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-test.yaml
 
-.PHONY: configure-prod-env
-configure-prod-env: ## Configure prod env
+.PHONY: configure-prod-network
+configure-prod-network: ## Configure prod network
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-deploy.yaml
 
-.PHONY: test-prod-env
-test-prod-env: ## Test prod env
+.PHONY: run-tests-prod-network
+run-tests-prod-network: ## Run tests against prod network
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-test.yaml
 
-.PHONY: stop-virl-test-env
-stop-virl-test-env: ## Stop VIRL test env
+.PHONY: stop-virl-test-network
+stop-virl-test-network: ## Stop test network in VIRL
 	. ./venv/bin/activate
 	virl down test-network
 
@@ -72,6 +72,4 @@ remove-venv: ## Remove virtualenv
 	. ./venv/bin/activate
 	rm -rf ./venv
 
-clean-all: stop-virl-test-env remove-venv ## Stop VIRL test env and remove virtualenv 
-	
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
