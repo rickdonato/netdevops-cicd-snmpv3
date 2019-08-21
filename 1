@@ -48,7 +48,7 @@ configure-test-network: ## Configure test network
 	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-deploy.yaml
 
 .PHONY: run-tests-test-network
-run-tests-test-network: ## Rum tests against test network
+run-tests-test-network: ## Rim tests against test network
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/test ansible/playbooks/snmp-test.yaml
 
@@ -72,4 +72,6 @@ remove-venv: ## Remove virtualenv
 	. ./venv/bin/activate
 	rm -rf ./venv
 
+clean-all: stop-virl-test-network remove-venv ## Stop VIRL test env and remove virtualenv 
+	
 # :%s/^[ ]\+/\t/g - automatically replace all tabs with spaces
