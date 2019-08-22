@@ -1,24 +1,23 @@
-// DRAFT //
-
 ## Introduction
 This repo is based upon a simple NetDevOps demo to deploy SNMPv3 to a Spine and Leaf topology via Ansible.
 
-
-## Installation Steps
-* install jenkins container
-* apt-get install sudo make vim -y
-* user mod - https://sgoyal.net/2016/11/18/run-a-shell-from-jenkins-using-sudo-ubuntu/
-* http://oss-world.blogspot.com/2015/08/merge-git-branches-using-jenkins.html
-* https://packetflow.slack.com/apps/A0F7VRFKN
-* Build Name and Description Setter
-* https://stackoverflow.com/questions/18635186/jenkins-passing-updated-revision-to-downstream-jobs/40348900#40348900
-
-## Create Fake Prod
+## VIRL
+### Create Fake Production Network
 ```
 virl up -e prod -f virl/prod.virl
 ```
 
+## Jenkins
+Configurations are located within the jenkins folder for:
+* Integration
+* Delivery
+* Deployment
+
+## Ansible
+SNMP configuration is defined within `group_vars/all.yaml`.
+
 ## Makefile
+The Makefile contains all the various steps used within each of the pipelines.
 ```
   apt                       Install pip
   clean-all                 Stop VIRL test env and remove virtualenv
@@ -33,21 +32,3 @@ virl up -e prod -f virl/prod.virl
   test-test-env             Test test env
   venv                      Install virtualenv, create virtualenv, install requirements
 ```
-https://pubhub.devnetcloud.com/media/netdevops-live/site/files/s02t05.pdf
-## Pipeline 1 - Auto
-*Test test branch against VIRL test environment.
-* Merge to master
-
-## Pipeline 2 - Kicked from Pipeline1
-* Test master branch against VIRL test environment.
-
-## Pipeline 3 - Manual
-* Configure prod and test prod.
-
-## Caveats
-* Makefile - sed and $
-* Makefile - tabs and spaces
-
-## References
-https://www.redhat.com/en/topics/devops/what-is-ci-cd
-
