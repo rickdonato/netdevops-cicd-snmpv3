@@ -16,14 +16,14 @@ virl up -e prod -f virl/prod.virl
 ```
 
 ## Jenkins
-Configurations are located within the jenkins folder for:
+Configurations are located within the `jenkins` folder for:
 * Integration
 * Delivery
 * Deployment
 
 ## Ansible
 * SNMP configuration is defined within `group_vars/all.yaml`
-* Inventory file for both prod and test within `inventory` folder.
+* Hosts for the prod and test networks defined within `inventory` folder files.
 * 2 playbooks included - deploy and test.
 
 ```
