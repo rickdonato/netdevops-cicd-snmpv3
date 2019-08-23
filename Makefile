@@ -37,7 +37,7 @@ lint: ## Perform linting against ansible yaml files
 	find ./ansible/ \( -name *.yaml -o -name *.yml \) -exec ansible-lint {} +
 
 .PHONY: start-test-network
-start-virl-test-network: ## Start test network via VIRL
+start-test-network: ## Start test network via VIRL
 	. ./venv/bin/activate
 	virl up -e test-network --provision -f virl/test.virl
 	virl ls | grep test | grep ACTIVE
