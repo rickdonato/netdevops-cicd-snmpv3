@@ -3,7 +3,14 @@ This repo is based upon a simple NetDevOps demo to deploy SNMPv3 to a Spine and 
 VIRL is also used to create a virtual test network to validate the changes as part of the pipelines.
 
 ## VIRL
-### Create Fake Production Network
+Topology files for test and prod are located within the `virl` dir.
+```
+.
+└── virl
+    ├── prod.virl
+    └── test.virl
+```
+To create fake production network, using the following:
 ```
 virl up -e prod -f virl/prod.virl
 ```
@@ -15,21 +22,37 @@ Configurations are located within the jenkins folder for:
 * Deployment
 
 ## Ansible
-SNMP configuration is defined within `group_vars/all.yaml`.
+* SNMP configuration is defined within `group_vars/all.yaml`
+* Inventory file for both prod and test within `inventory` folder.
+* 2 playbooks included - deploy and test.
+
+```
+.
+├── ansible
+│   ├── ansible.cfg
+│   ├── inventory
+│   │   ├── prod
+│   │   └── test
+│   └── playbooks
+│       ├── group_vars
+│       │   └── all.yaml
+│       ├── host_vars
+│       ├── snmp-deploy.yaml
+│       └── snmp-test.yaml
+```
 
 ## Makefile
 The Makefile contains all the various steps used within each of the pipelines.
 ```
-  apt                       Install pip
-  clean-all                 Stop VIRL test env and remove virtualenv
-  configure-prod-env        Configure prod env
-  configure-test-env        Configure test env
+  add-venv                  Install virtualenv, create virtualenv, install requirements
+  configure-prod-network    Configure prod network
+  configure-test-network    Configure test network
   format                    Remove end of line spaces from yaml files
+  install-deps              Install pip
   lint                      Perform linting against ansible yaml files
   remove-venv               Remove virtualenv
-  start-virl-test-env       Start VIRL test env
-  stop-virl-test-env        Stop VIRL test env
-  test-prod-env             Test prod env
-  test-test-env             Test test env
-  venv                      Install virtualenv, create virtualenv, install requirements
+  run-tests-prod-network    Run tests against prod network
+  run-tests-test-network    Rum tests against test network
+  start-virl-test-network   Start test network via VIRL
+  stop-virl-test-network    Stop test network in VIRL
 ```
