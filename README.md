@@ -1,5 +1,6 @@
 ## Introduction
 This repo is based upon a simple NetDevOps demo to deploy SNMPv3 to a Spine and Leaf topology via Ansible.
+VIRL is also used to create a virtual test network to validate the changes as part of the pipelines.
 
 ## VIRL
 ### Create Fake Production Network
