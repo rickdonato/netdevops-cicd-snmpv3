@@ -62,8 +62,8 @@ run-tests-prod-network: ## Run tests against prod network
 	. ./venv/bin/activate
 	ansible-playbook -i ansible/inventory/prod ansible/playbooks/snmp-test.yaml
 
-.PHONY: stop-test-network
-stop-test-network: ## Stop test network in VIRL
+.PHONY: distroy-test-network
+distroy-test-network: ## Distroy test network in VIRL
 	. ./venv/bin/activate
 	virl down test-network
 
