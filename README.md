@@ -16,7 +16,7 @@ virl up -e prod -f virl/prod.virl
 ```
 
 ## Jenkins
-Configurations are located within the `jenkins` folder for:
+Job XML's are located within the `jenkins` folder for:
 * Integration
 * Delivery
 * Deployment
