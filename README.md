@@ -47,12 +47,12 @@ The Makefile contains all the various steps used within each of the pipelines.
   add-venv                  Install virtualenv, create virtualenv, install requirements
   configure-prod-network    Configure prod network
   configure-test-network    Configure test network
+  distroy-test-network      Distroy test network in VIRL
   format                    Remove end of line spaces from yaml files
   install-deps              Install pip
   lint                      Perform linting against ansible yaml files
   remove-venv               Remove virtualenv
   run-tests-prod-network    Run tests against prod network
   run-tests-test-network    Rum tests against test network
-  start-virl-test-network   Start test network via VIRL
-  stop-virl-test-network    Stop test network in VIRL
+  start-test-network        Start test network via VIRL
 ```
