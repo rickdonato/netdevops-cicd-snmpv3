@@ -2,6 +2,11 @@
 This repo is based upon a simple NetDevOps demo to deploy SNMPv3 to a Spine and Leaf topology via Ansible.
 VIRL is also used to create a virtual test network to validate the changes.
 
+The full write up (based on this repo) can be located at:
+* packetflow.co.uk/netdevops-ci-cd-with-ansible-jenkins-and-cisco-virl-part-1-what-is-netdevops/
+* packetflow.co.uk/netdevops-ci-cd-with-ansible-github-jenkins-and-cisco-virl-part-2-the-components-tools/
+* packetflow.co.uk/netdevops-ci-cd-with-ansible-jenkins-and-cisco-virl-part-3-configuration-walkthrough/
+
 ## VIRL
 Topology files for test and prod are located within the `virl` dir.
 ```
